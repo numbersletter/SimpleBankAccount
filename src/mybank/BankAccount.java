@@ -1,8 +1,5 @@
 package mybank;
 
-import java.util.Objects;
-import java.util.UUID;
-
 public interface BankAccount
 {
     double rateStandard = 0.005;
