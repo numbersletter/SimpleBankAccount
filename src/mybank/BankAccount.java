@@ -104,8 +104,10 @@ abstract class AbstractBankAccount implements BankAccount
         // handle invalid passcodes using Integer parsing
         try
         {
-            int codeAsInt = Integer.parseInt(code);
+            if(code.length() != 4)
+                throw new NumberFormatException();
 
+            int codeAsInt = Integer.parseInt(code);
             if(codeAsInt < 0 || codeAsInt > 9999)
                 throw new NumberFormatException();
             else
@@ -250,7 +252,7 @@ class VIPAccount extends AbstractBankAccount
     @Override
     public double calculateInterest(int months)
     {
-        return Math.round((getBalance() * (Math.pow((1+rateVIP), months - 1)) * 100.0)) / 100.0;
+        return Math.round( (getBalance() * ((Math.pow((1+rateVIP), months)) - 1) * 100.0)) / 100.0;
     }
 
 }
